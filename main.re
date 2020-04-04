@@ -17,7 +17,7 @@ let corpus =
 
 let corpus_len = String.length(corpus);
 
-let score_bins = bin => {
+let score = bin => {
   let score = ref(0);
   let last = ref(CharSet.mem(corpus.[0], bin));
   for (i in 1 to corpus_len - 1) {
@@ -39,6 +39,7 @@ let letters = "abcdefghijklmnopqrstuvwxyz";
 let letters_len = String.length(letters);
 
 let iter = f =>
+  /* that's 2 ^ 26 - 1 */
   for (n in 0 to 0b11111111111111111111111111) {
     if (n mod 10000 == 0) {
       Printf.printf("%d\n%!", n);
@@ -58,13 +59,18 @@ let iter = f =>
     };
   };
 
+type best = {
+  score: int,
+  bin: option(string),
+};
+
 let main = () => {
-  let best = ref((0, None));
+  let best = ref({score: 0, letters: None});
   iter(bin =>
-    let score = score_bins(bin);
+    let score = score(bin);
     let (best_score, _) = best^;
     if (score >= best_score) {
-      best := (score, Some(bin));
+      best := {score, bin: Some(bin)};
       Printf.printf(
         "(score %d): %s\n%!",
         score,
