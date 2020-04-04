@@ -1,9 +1,9 @@
 {
-  "name": "binning",
+  "name": "playground",
   "version": "1.0.0",
-  "description": "binning",
+  "description": "playground",
   "esy": {
-    "build": "dune build -p binning",
+    "build": "dune build -p playground",
     "buildsInSource": "_build"
   },
   "dependencies": {

@@ -1,7 +1,20 @@
 {
   "checksum": "50506ead4b2f64b98b2ff22cd11b9edc",
-  "root": "binning@link-dev:./esy.json",
+  "root": "playground@link-dev:./esy.json",
   "node": {
+    "playground@link-dev:./esy.json": {
+      "id": "playground@link-dev:./esy.json",
+      "name": "playground",
+      "version": "link-dev:./esy.json",
+      "source": { "type": "link-dev", "path": ".", "manifest": "esy.json" },
+      "overrides": [],
+      "dependencies": [
+        "ocaml@4.9.0@d41d8cd9", "@opam/dune@opam:1.11.4@a7ccb7ae"
+      ],
+      "devDependencies": [
+        "ocaml@4.9.0@d41d8cd9", "@opam/reason@opam:3.6.0@2da53ff9"
+      ]
+    },
     "ocaml@4.9.0@d41d8cd9": {
       "id": "ocaml@4.9.0@d41d8cd9",
       "name": "ocaml",
@@ -15,19 +28,6 @@
       "overrides": [],
       "dependencies": [],
       "devDependencies": []
-    },
-    "binning@link-dev:./esy.json": {
-      "id": "binning@link-dev:./esy.json",
-      "name": "binning",
-      "version": "link-dev:./esy.json",
-      "source": { "type": "link-dev", "path": ".", "manifest": "esy.json" },
-      "overrides": [],
-      "dependencies": [
-        "ocaml@4.9.0@d41d8cd9", "@opam/dune@opam:1.11.4@a7ccb7ae"
-      ],
-      "devDependencies": [
-        "ocaml@4.9.0@d41d8cd9", "@opam/reason@opam:3.6.0@2da53ff9"
-      ]
     },
     "@opam/result@opam:1.5@6b753c82": {
       "id": "@opam/result@opam:1.5@6b753c82",
