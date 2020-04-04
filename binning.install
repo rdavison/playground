@@ -1,8 +1,0 @@
-lib: [
-  "_build/install/default/lib/binning/META"
-  "_build/install/default/lib/binning/dune-package"
-  "_build/install/default/lib/binning/opam"
-]
-doc: [
-  "_build/install/default/doc/binning/README.md"
-]
