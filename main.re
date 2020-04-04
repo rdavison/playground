@@ -1,4 +1,4 @@
-module CharSet =
+module Bin =
   Set.Make({
     type t = char;
     let compare = Stdlib.compare;
@@ -19,11 +19,11 @@ let corpus_len = String.length(corpus);
 
 let score = bin => {
   let score = ref(0);
-  let last = ref(CharSet.mem(corpus.[0], bin));
+  let last = ref(Bin.mem(corpus.[0], bin));
   for (i in 1 to corpus_len - 1) {
     switch (corpus.[i]) {
     | 'a'..'z' as letter =>
-      let uses_bin = CharSet.mem(letter, bin);
+      let uses_bin = Bin.mem(letter, bin);
       if (last^ != uses_bin) {
         incr(score);
       };
@@ -44,16 +44,16 @@ let iter = f =>
     if (n mod 10000 == 0) {
       Printf.printf("%d\n%!", n);
     };
-    let bin = ref(CharSet.empty);
+    let bin = ref(Bin.empty);
     for (i in 0 to letters_len - 1)
       {
         let letter = letters.[i];
         let x = 1 lsl i;
         if (x land n == x) {
-          bin := CharSet.add(letter, bin^);
+          bin := Bin.add(letter, bin^);
         };
       };
-    let size = CharSet.elements(bin^) |> List.length;
+    let size = Bin.elements(bin^) |> List.length;
     if (size > 5 && size < 21) {
       f(bin^);
     };
@@ -77,7 +77,7 @@ let main = () => {
         List.fold_left(
           (acc, x) => acc ++ String.make(1, x),
           "",
-          CharSet.elements(bin),
+          Bin.elements(bin),
         ),
       );
     };
