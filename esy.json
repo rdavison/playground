@@ -1,0 +1,17 @@
+{
+  "name": "binning",
+  "version": "1.0.0",
+  "description": "binning",
+  "esy": {
+    "build": "dune build -p binning",
+    "buildsInSource": "_build"
+  },
+  "dependencies": {
+    "ocaml": "4.9.0",
+    "@opam/dune": "*"
+  },
+  "devDependencies": {
+    "ocaml": "4.9.0",
+    "@opam/reason": "*"
+  }
+}
