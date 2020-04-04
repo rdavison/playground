@@ -1,10 +1,14 @@
 # Prerequisites:
 ```
 $ npm install -g esy
+```
+
+# Build
+```
 $ esy
 ```
 
-# To run the code:
+# Run:
 ```
 $ esy dune exec ./main.exe
 ```
