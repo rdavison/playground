@@ -11,9 +11,7 @@ let read_whole_file = filename => {
   s;
 };
 
-let corpus =
-  read_whole_file("corpus/lojban.txt")
-  |> String.lowercase_ascii;
+let corpus = read_whole_file("corpus/lojban.txt") |> String.lowercase_ascii;
 
 let corpus_len = String.length(corpus);
 
@@ -38,26 +36,33 @@ let letters = "abcdefghijklmnopqrstuvwxyz";
 
 let letters_len = String.length(letters);
 
-let iter = f =>
-  /* that's 2 ^ 26 - 1 */
-  for (n in 0 to 0b11111111111111111111111111) {
+let iter = f => {
+  let iterations = {
+    let exp = float_of_int(letters_len);
+    let res = 2. ** exp -. 1.;
+    int_of_float(res);
+  };
+  for (n in 0 to iterations) {
     if (n mod 10000 == 0) {
-      Printf.printf("%d\n%!", n);
+      Printf.eprintf(
+        "Progress: %f%%\n%!",
+        float_of_int(n) /. float_of_int(iterations) *. 100.,
+      );
     };
     let bin = ref(Bin.empty);
-    for (i in 0 to letters_len - 1)
-      {
-        let letter = letters.[i];
-        let x = 1 lsl i;
-        if (x land n == x) {
-          bin := Bin.add(letter, bin^);
-        };
+    for (i in 0 to letters_len - 1) {
+      let letter = letters.[i];
+      let x = 1 lsl i;
+      if (x land n == x) {
+        bin := Bin.add(letter, bin^);
       };
+    };
     let size = Bin.elements(bin^) |> List.length;
     if (size == 14) {
       f(bin^);
     };
   };
+};
 
 let main = () => {
   let best = ref(0);
