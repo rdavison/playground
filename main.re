@@ -12,7 +12,7 @@ let read_whole_file = filename => {
 };
 
 let corpus =
-  read_whole_file("corpus/alice-in-wonderland-ch1.txt")
+  read_whole_file("corpus/lojban.txt")
   |> String.lowercase_ascii;
 
 let corpus_len = String.length(corpus);
@@ -54,23 +54,17 @@ let iter = f =>
         };
       };
     let size = Bin.elements(bin^) |> List.length;
-    if (size > 5 && size < 21) {
+    if (size == 14) {
       f(bin^);
     };
   };
 
-type best = {
-  score: int,
-  bin: option(string),
-};
-
 let main = () => {
-  let best = ref({score: 0, letters: None});
-  iter(bin =>
+  let best = ref(0);
+  iter(bin => {
     let score = score(bin);
-    let (best_score, _) = best^;
-    if (score >= best_score) {
-      best := {score, bin: Some(bin)};
+    if (score >= best^) {
+      best := score;
       Printf.printf(
         "(score %d): %s\n%!",
         score,
@@ -81,7 +75,7 @@ let main = () => {
         ),
       );
     };
-  );
+  });
 };
 
 main();
